@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog Website</title>
+
+    <link rel="stylesheet" href="blog.css">
+</head>
+<body>
+
+    <header>
+        <h1>My Blog Website</h1>
+
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="blog.html">add blog</a>
+        </nav>
+    </header>
+
+    <section class="welcome">
+        <h2>Welcome to My Blog</h2>
+        <p>Create and share your blogs easily.</p>
+    </section>
+    <section id="addBlog">
+
+        <h2>Add New Blog</h2>
+
+        <form id="blogForm">
+
+            <label>Blog Title</label>
+            <input type="text" id="title">
+
+            <label>Author Name</label>
+            <input type="text" id="author">
+
+            <label>Blog Description</label>
+            <textarea id="description"></textarea>
+
+            <button type="submit">
+                Publish Blog
+            </button>
+
+        </form>
+
+    </section>
+
+
+    <section id="blogs">
+
+        <h2>Latest Blogs</h2>
+
+        <div id="blogContainer">
+
+            <div class="card">
+                <h3>HTML Basics</h3>
+                <h4>By Admin</h4>
+                <p>HTML is the standard language used to create web pages.</p>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <footer>
+
+        <p>© 2026 My Blog Website | All Rights Reserved</p>
+
+    </footer>
+
+<script src="blog.js"></script>
+
+</body>
+</html>
