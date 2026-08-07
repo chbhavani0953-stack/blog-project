@@ -1,7 +1,9 @@
 const form = document.getElementById("blogForm");
-const blogContainer = document.getElementById("blogContainer");
+const blogList = document.getElementById("bloglist");
 
-form.addEventListener("submit", function(event){
+let blogs = [];
+
+form.addEventListener("submit", function(event) {
 
     event.preventDefault();
 
@@ -9,25 +11,45 @@ form.addEventListener("submit", function(event){
     const author = document.getElementById("author").value.trim();
     const description = document.getElementById("description").value.trim();
 
-    if(title === "" || author === "" || description === ""){
-        alert("Please fill in all the fields.");
+    if (title === "" || author === "" || description === "") {
+        alert("Please fill in all fields.");
         return;
     }
 
-    const blogCard = document.createElement("div");
+    const blog = {
+        title: title,
+        author: author,
+        description: description
+    };
 
-    blogCard.classList.add("card");
+    blogs.push(blog);
 
-    blogCard.innerHTML = `
-        <h3>${title}</h3>
-        <h4>By ${author}</h4>
-        <p>${description}</p>
-    `;
+    displayBlogs();
 
-    blogContainer.prepend(blogCard);
-
-    alert("Blog published successfully!");
+    alert("Blog Published Successfully!");
 
     form.reset();
 
 });
+
+function displayBlogs() {
+
+    blogList.innerHTML = "";
+
+    blogs.forEach(function(blog) {
+
+        const card = document.createElement("div");
+
+        card.classList.add("card");
+
+        card.innerHTML = `
+            <h3>${blog.title}</h3>
+            <h4>By ${blog.author}</h4>
+            <p>${blog.description}</p>
+        `;
+
+        blogList.appendChild(card);
+
+    });
+
+}
