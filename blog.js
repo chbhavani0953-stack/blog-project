@@ -1,55 +1,51 @@
-const form = document.getElementById("blogForm");
-const blogList = document.getElementById("bloglist");
+let blogPosts = JSON.parse(localStorage.getItem("blogPosts")) || [];
 
-let blogs = [];
 
-form.addEventListener("submit", function(event) {
+document.getElementById("blogForm").addEventListener("submit", function(event) {
+  event.preventDefault(); 
 
-    event.preventDefault();
 
-    const title = document.getElementById("title").value.trim();
-    const author = document.getElementById("author").value.trim();
-    const description = document.getElementById("description").value.trim();
+  const name = document.getElementById("name").value.trim();
+  const email = document.getElementById("email").value.trim();
+  const title = document.getElementById("title").value.trim();
+  const content = document.getElementById("content").value.trim();
 
-    if (title === "" || author === "" || description === "") {
-        alert("Please fill in all fields.");
-        return;
-    }
+  if (name === "" || email === "" || title === "" || content === "") {
+    alert("All fields are required!");
+    return;
+  }
+  const emailPattern = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
+  if (!email.match(emailPattern)) {
+    alert("Please enter a valid email address!");
+    return;
+  }
+  const newPost = {
+    id: blogPosts.length + 1,
+    name: name,
+    email: email,
+    title: title,
+    content: content,
+    date: new Date().toLocaleString()
+  };
 
-    const blog = {
-        title: title,
-        author: author,
-        description: description
-    };
-
-    blogs.push(blog);
-
-    displayBlogs();
-
-    alert("Blog Published Successfully!");
-
-    form.reset();
-
+  blogPosts.push(newPost);
+  localStorage.setItem("blogPosts", JSON.stringify(blogPosts));
+  displayBlogs();
+  document.getElementById("blogForm").reset();
 });
-
 function displayBlogs() {
+  const blogList = document.getElementById("blogList");
+  blogList.innerHTML = ""; 
 
-    blogList.innerHTML = "";
-
-    blogs.forEach(function(blog) {
-
-        const card = document.createElement("div");
-
-        card.classList.add("card");
-
-        card.innerHTML = `
-            <h3>${blog.title}</h3>
-            <h4>By ${blog.author}</h4>
-            <p>${blog.description}</p>
-        `;
-
-        blogList.appendChild(card);
-
-    });
-
+  blogPosts.forEach(post => {
+    const blogCard = document.createElement("article");
+    blogCard.classList.add("blog-card"); 
+    blogCard.innerHTML = `
+      <h2>${post.title}</h2>
+      <p><strong>By:</strong> ${post.name} (${post.email})</p>
+      <p>${post.content}</p>
+      <small>Posted on: ${post.date}</small>
+    `;
+    blogList.appendChild(blogCard);
+  });
 }

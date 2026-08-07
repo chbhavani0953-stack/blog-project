@@ -1,77 +1,40 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blog Website</title>
-
+  <title>My Website - Blog</title>
     <link rel="stylesheet" href="blog.css">
 </head>
 <body>
+  <nav>
+    <a href="index.html">Home</a> |
+    <a href="blog.html">Blog</a>
+  </nav>
+  <h1>My Blog</h1>
+  <article>
+    <h2>First Blog Post</h2>
+    <p>This is my first blog post. More content will be added soon!</p>
+  </article>
+  <form id="blogForm">
+  <label for="name">Name:</label>
+  <input type="text" id="name" placeholder="Enter your name">
 
-    <header>
-        <h1>My Blog Website</h1>
+  <label for="email">Email:</label>
+  <input type="email" id="email" placeholder="Enter your email">
 
-        <nav>
-            <a href="index.html">Home</a>
-            <a href="blog.html">add blog</a>
-        </nav>
-    </header>
+  <label for="title">Blog Title:</label>
+  <input type="text" id="title" placeholder="Enter blog title">
 
-    <section class="welcome">
-        <h2>Welcome to My Blog</h2>
-        <p>Create and share your blogs easily.</p>
-    </section>
-    <section id="addBlog">
+  <label for="content">Blog Content:</label>
+  <textarea id="content" placeholder="Write your blog here"></textarea>
 
-        <h2>Add New Blog</h2>
+  <button type="submit">Add Blog</button>
+</form>
+  <h2>All Blog Posts</h2>
+  <div id="blogList"></div>
 
-        <form id="blogForm">
-
-            <label>Blog Title</label>
-            <input type="text" id="title">
-
-            <label>Author Name</label>
-            <input type="text" id="author">
-
-            <label>Blog Description</label>
-            <textarea id="description"></textarea>
-
-            <button type="submit">
-                Publish Blog
-            </button>
-
-        </form>
-        <h2>all blog posts</h2>
-        <div id="bloglist"></div>
-
-    </section>
-
-    
-
-
-
-        <h2>Latest Blogs</h2>
-
-        <div id="blogContainer">
-
-            <div class="card">
-                <h3>HTML Basics</h3>
-                <h4>By Admin</h4>
-                <p>HTML is the standard language used to create web pages.</p>
-            </div>
-
-        </div>
-
-
-
-    <footer>
-
-        <p>© 2026 My Blog Website | All Rights Reserved</p>
-
-    </footer>
-
-<script src="blog.js"></script>
-
+  <footer>
+    <p>&copy; 2026 My Website | All Rights Reserved</p>
+  </footer>
+  <script src="blog.js"></script>
 </body>
 </html>

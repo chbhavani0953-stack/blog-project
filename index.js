@@ -1,33 +1,40 @@
-const form = document.getElementById("blogForm");
-const blogContainer = document.getElementById("blogContainer");
+document.addEventListener("DOMContentLoaded", function(){
+  alert("Welcome to My Website Home Page!");
 
-form.addEventListener("submit", function(event){
+  const welcomeBtn = document.getElementById("welcomeBtn");
+  if (welcomeBtn) {
+    welcomeBtn.addEventListener("click", function() {
+      document.getElementById("message").innerText = "Thanks for visiting the Home Page!";
+    });
+  }
 
-    event.preventDefault();
+  const heading = document.querySelector("h1");
+  heading.addEventListener("mouseover", function() {
+    heading.style.color = "#ff9800"; 
+  });
+  heading.addEventListener("mouseout", function() {
+    heading.style.color = "#333"; 
+  });
+  function displayHomeBlogs() {
+    const homeBlogList = document.getElementById("homeBlogList");
+    homeBlogList.innerHTML = "";
+    const blogPosts = JSON.parse(localStorage.getItem("blogPosts")) || [];
 
-    const title = document.getElementById("title").value.trim();
-    const author = document.getElementById("author").value.trim();
-    const description = document.getElementById("description").value.trim();
-
-    if(title==="" || author==="" || description===""){
-        alert("Please fill all the fields.");
-        return;
+    if (blogPosts.length === 0) {
+      homeBlogList.innerHTML = "<p>No blog posts yet. Go to Blog page to add one!</p>";
+      return;
     }
 
-    const card = document.createElement("div");
-
-    card.className = "card";
-
-    card.innerHTML = `
-        <h3>${title}</h3>
-        <h4>By ${author}</h4>
-        <p>${description}</p>
-    `;
-
-    blogContainer.prepend(card);
-
-    alert("Blog added successfully!");
-
-    form.reset();
-
+    blogPosts.forEach(post => {
+      const blogCard = document.createElement("article");
+      blogCard.classList.add("blog-card");
+      blogCard.innerHTML = `
+        <h3>${post.title}</h3>
+        <p>${post.content.substring(0, 100)}...</p>
+        <small>By ${post.name} on ${post.date}</small>
+      `;
+      homeBlogList.appendChild(blogCard);
+    });
+  }
+  displayHomeBlogs();
 });
