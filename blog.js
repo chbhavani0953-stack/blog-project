@@ -58,6 +58,9 @@ function displayBlogs() {
       <p>${post.content}</p>
       <small>Posted on: ${post.date}</small>
       <button onclick="editBlog(${post.id})">Edit</button>
+       <button onclick="deleteBlog(${post.id})">
+        Delete
+      </button>
     `;
     blogList.appendChild(blogCard);
   });
@@ -70,4 +73,25 @@ function editBlog(id) {
   document.getElementById("content").value = post.content;
   document.getElementById("blogForm").setAttribute("data-edit-id", id);
 }
+function deleteBlog(id) {
+
+  const confirmDelete = confirm(
+    "Are you sure you want to delete this blog post?"
+  );
+
+  if (!confirmDelete) {
+    return;
+  }
+  blogPosts = blogPosts.filter(post => post.id !== id);
+
+  localStorage.setItem(
+    "blogPosts",
+    JSON.stringify(blogPosts)
+  );
+
+  displayBlogs();
+
+  alert("Blog deleted successfully!");
+}
+
 document.addEventListener("DOMContentLoaded", displayBlogs);
