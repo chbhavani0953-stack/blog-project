@@ -1,125 +1,77 @@
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
+html {
+  scroll-behavior: smooth;
 }
 
-body{
-    font-family:Arial,sans-serif;
-    background:#f4f4f4;
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
 }
 
-header{
-    background:#0077cc;
-    color:white;
-    text-align:center;
-    padding:20px;
+nav {
+  background: #333;
+  padding: 10px;
+  text-align: center;
+  position: sticky;
+  top: 0;
 }
 
-nav{
-    margin-top:10px;
+nav a {
+  color: white;
+  text-decoration: none;
+  margin: 0 15px;
+  transition: color 0.3s ease, border-bottom 0.3s ease;
 }
 
-nav a{
-    color:white;
-    text-decoration:none;
-    margin:15px;
-    font-size:18px;
+nav a:hover {
+  color: #3498db;
+  border-bottom: 2px solid #3498db;
 }
 
-nav a:hover{
-    color:yellow;
+form {
+  margin: 20px 0;
 }
 
-.welcome{
-    background:white;
-    padding:40px;
-    text-align:center;
+input, textarea, button {
+  display: block;
+  margin: 10px 0;
+  padding: 10px;
+  width: 300px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  transition: border-color 0.3s ease, transform 0.3s ease;
 }
 
-.welcome h2{
-    color:#0077cc;
+input:focus, textarea:focus {
+  border-color: #3498db;
+  transform: scale(1.02);
 }
 
-#addBlog{
-    width:60%;
-    margin:30px auto;
-    background:white;
-    padding:25px;
-    border-radius:10px;
-    box-shadow:0px 2px 8px gray;
+button {
+  background: #3498db;
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.3s ease;
 }
 
-#addBlog h2{
-    text-align:center;
-    margin-bottom:20px;
+button:hover {
+  background: #2980b9;
+  transform: scale(1.1);
 }
 
-label{
-    font-weight:bold;
+#blogList article {
+  background: #fff;
+  padding: 15px;
+  margin: 10px auto;
+  width: 80%;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  opacity: 0;
+  animation: fadeIn 1.5s ease-in forwards;
 }
 
-input,
-textarea{
-    width:100%;
-    padding:10px;
-    margin-top:8px;
-    margin-bottom:15px;
-    border:1px solid gray;
-    border-radius:5px;
-}
-
-textarea{
-    height:120px;
-}
-
-button{
-    width:100%;
-    padding:12px;
-    background:#0077cc;
-    color:white;
-    border:none;
-    border-radius:5px;
-    cursor:pointer;
-    font-size:18px;
-}
-
-button:hover{
-    background:#005fa3;
-}
-
-#blogs{
-    width:80%;
-    margin:auto;
-    padding:20px;
-}
-
-#blogs h2{
-    text-align:center;
-    margin-bottom:20px;
-}
-
-.card{
-    background:white;
-    padding:20px;
-    margin-bottom:20px;
-    border-radius:10px;
-    box-shadow:0px 2px 8px gray;
-}
-
-.card h3{
-    color:#0077cc;
-}
-
-.card h4{
-    color:gray;
-    margin:10px 0;
-}
-
-footer{
-    background:#222;
-    color:white;
-    text-align:center;
-    padding:20px;
-    margin-top:30px;
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
 }
